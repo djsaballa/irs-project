@@ -5,8 +5,9 @@
   $table = file_get_contents('https://www.irs.gov/efile-index-taxpayer-search?zip='. $zipcode .'&state='. $state);
   $dom = new DOMDocument;
 
-
+  libxml_use_internal_errors(true);
   $dom->loadHTML($table);
+  libxml_use_internal_errors(false);
   $dom->preserveWhiteSpace = false;
   $tables = $dom->getElementsByTagName('table');
 
